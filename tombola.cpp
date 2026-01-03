@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <unistd.h>
 using namespace std;
 
 int main()
@@ -297,7 +298,7 @@ while(winner_found)
     if(extracted_numbers[randnumber-1]!=0)
         continue;
 
-    cout <<"Numero estratto: "<<randnumber<<endl;
+    cout <<"Numero estratto: "<<randnumber<<endl<<endl<<endl;
     extracted_numbers[randnumber-1] =randnumber;
 
     for(int i=0; i<quantity_players; i++)
@@ -320,6 +321,17 @@ while(winner_found)
                 }
             }
 
+        
+        }// end for row iteration
+
+
+    }// end for players iteration
+
+    for(int i=0; i<quantity_players; i++)
+    {
+        cout<<"Scheda del giocatore " <<i+1 <<endl;
+        for(int row=0; row< 3; row++)
+        {
             cout<<"------------------------------"<<endl;
             
             for(int col = 0; col < 9; col++)
@@ -332,17 +344,15 @@ while(winner_found)
                     cout << cell[i][row][col] << " ";
             }
             cout << endl;
-
-
-
-
-
         }
 
+        cout << endl;
+    } // end for players iteration
 
-    }
+    cout<<endl<<endl;
+    sleep(3);
 
-    cout<<endl;
+
 }
 cout<<"Complimenti al giocatore "<<winner_player<<" che ha fatto tombola!"<<endl;
 
