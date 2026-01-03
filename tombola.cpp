@@ -219,7 +219,7 @@ int main()
         cout<<"Scheda del giocatore " <<i+1 <<endl;
         for(int row=0; row< 3; row++)
         {
-            cout<<"--------------------------------"<<endl;
+            cout<<"------------------------------"<<endl;
             
             for(int col = 0; col < 9; col++)
             {
@@ -236,13 +236,115 @@ int main()
         cout << endl;
     } // end for players iteration
 
+
+    //help part
+    int count_numbers[10]={0};
+
+    for(int i=0; i<quantity_players; i++)
+    {
+        for(int row=0; row<3; row++)
+        {
+            for(int col=0; col<9; col++)
+            {
+                if(cell[i][row][col]!=-1)
+                {
+                    count_numbers[i]++;
+                }
+            }
+        }
+
+       
+
+
+    }
+
+    //cout<<"1 player has "<<count_numbers[0]<<" numbers."<<endl;
+    //cout<<"1 player has "<<count_numbers[1]<<" numbers."<<endl;
+
+
+
+    //end of help part
+
+
+
+
+    //Second part: number extraction
+    cout<<"Are you ready to start the game? (y/n): ";
+    char ready;
+    cin>>ready;
+    if(ready!='y' && ready!='Y')
+    {
+        cout<<"Gioco finito"<<endl;
+        return 0;
+    }
+
+    /*else
+    {
+        cout<<"\33[2J";
+    }*/
     
 
+    int extracted_numbers[90]={0};
+    bool winner_found=true;
+    int winner_player;
+    int randnumber;
+
+
+while(winner_found)
+{
+    randnumber=rand()%90+1;
+
+    if(extracted_numbers[randnumber-1]!=0)
+        continue;
+
+    cout <<"Numero estratto: "<<randnumber<<endl;
+    extracted_numbers[randnumber-1] =randnumber;
+
+    for(int i=0; i<quantity_players; i++)
+    {
+
+        for(int row=0; row<3; row++)
+        {
+            for(int col=0; col<9; col++)
+            {
+                if(cell[i][row][col]==randnumber)
+                {
+                    cell[i][row][col]=0;
+                    count_numbers[i]--;
+
+                    if(count_numbers[i]==0)
+                    {
+                        winner_found=false;
+                        winner_player=i+1;
+                    }
+                }
+            }
+
+            cout<<"------------------------------"<<endl;
+            
+            for(int col = 0; col < 9; col++)
+            {
+                if(cell[i][row][col] == -1)
+                    cout << "   ";
+                else if (cell[i][row][col] < 10 && cell[i][row][col] > 0)
+                    cout << cell[i][row][col] << "  ";
+                else
+                    cout << cell[i][row][col] << " ";
+            }
+            cout << endl;
 
 
 
 
 
+        }
+
+
+    }
+
+    cout<<endl;
+}
+cout<<"Complimenti al giocatore "<<winner_player<<" che ha fatto tombola!"<<endl;
 
 
 
