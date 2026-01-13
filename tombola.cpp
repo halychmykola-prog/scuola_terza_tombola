@@ -14,7 +14,7 @@ int main()
     int cell[2][3][9];
     srand(time(0));
 
-
+	//extract cells
     for(int i = 0; i < 2; i++)
     {
         int used_numbers[9];
@@ -37,7 +37,7 @@ int main()
                 }
             }
 
-         
+         	//generazione dei numeri
             for(int column = 0; column < 9; column++)
             {
                 if(!selected[column])
@@ -68,7 +68,7 @@ int main()
             }
         }
 
-        
+        //generazione della tabella iniziale
         cout << "Scheda del giocatore " << i + 1 << endl;
         for(int row = 0; row < 3; row++)
         {
@@ -111,6 +111,7 @@ int main()
     bool winner_found = true;
     int winner_player = -1;
 
+	//processo del gioco
     while(winner_found)
     {
         int randnumber = rand() % 90 + 1;
@@ -119,7 +120,7 @@ int main()
 
         extracted_numbers[randnumber - 1] = randnumber;
         cout << "Numero estratto: " << randnumber << endl << endl;
-
+		
         for(int i = 0; i < 2; i++)
         {
             for(int row = 0; row < 3; row++)
@@ -141,7 +142,7 @@ int main()
             }
         }
 
-      
+        //generazione della tabella durante processo
         for(int i = 0; i < 2; i++)
         {
             cout << "Scheda del giocatore " << i + 1 << endl;
@@ -171,3 +172,4 @@ int main()
     return 0;
 }
 	
+
